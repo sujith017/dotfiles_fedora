@@ -1,0 +1,160 @@
+@import "./themes/mocha.css";
+
+* {
+  font-family: "JetBrainsMono Nerd Font Mono";
+  font-weight: bold;
+  /* min-height: 0; */
+  /* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
+  font-size: 100%;
+  /* font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"'; */
+}
+
+window#waybar 
+{
+  background-color: shade(@base, 0.9);
+  opacity: 0.7;
+  transition-property: background-color;
+  transition-duration: 0.5s;
+  border-radius: 10px;
+    color:grey;
+}
+
+#workspaces button {
+  color: @overlay1;
+  box-shadow: none;
+  text-shadow: none;
+  padding: 0px;
+  border-radius: 9px;
+  padding-left: 12px;
+  padding-right: 12px;
+  animation: gradient_f 20s ease-in infinite;
+  transition: all 0.5s cubic-bezier(0.55, -0.68, 0.48, 1.682);
+}
+
+#workspaces button:hover {
+  border-radius: 10px;
+  color: @peach;
+  background-color: @surface0;
+  padding-left: 2px;
+  padding-right: 2px;
+  animation: gradient_f 20s ease-in infinite;
+  transition: all 0.3s cubic-bezier(0.55, -0.68, 0.48, 1.682);
+}
+
+#workspaces button.persistent {
+  color: @surface1;
+  border-radius: 10px;
+}
+
+#workspaces button.active {
+  color: @mauve;
+  border-radius: 10px;
+  padding-left: 8px;
+  padding-right: 8px;
+  animation: gradient_f 20s ease-in infinite;
+  transition: all 0.3s cubic-bezier(0.55, -0.68, 0.48, 1.682);
+}
+
+#workspaces button.urgent {
+  color: @red;
+  border-radius: 0px;
+}
+
+/* This section can be use if you want to separate waybar modules */
+.modules-left,
+.modules-center,
+.modules-right {
+  background: inherit;
+  border: 0.5px solid @overlay0;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-right: 23px;
+  padding-left: 23px;
+  border-radius: 10px;
+}
+
+.modules-left,
+.modules-right {
+  border: 1px solid @blue;
+  margin-left: 9px;
+  margin-right: 9px;
+}
+
+#battery,
+#bluetooth,
+#clock,
+#custom-notification,
+#custom-cava,
+#pulseaudio,
+#pulseaudio.microphone,
+#tray,
+#cpu,
+#memory,
+#workspaces,
+#user
+#custom-menu,
+#custom-exit {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-right: 12px;
+  padding-left: 12px;
+}
+#user{
+  padding-right: 6px;
+}
+#bluetooth {
+  color: @blue;
+}
+
+#battery {
+  color: @green;
+}
+
+@keyframes blink {
+  to {
+    color: @surface0;
+  }
+}
+
+#battery.critical:not(.charging) {
+  background-color: @red;
+  color: @theme_text_color;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  box-shadow: inset 0 -3px transparent;
+}
+
+#clock {
+  color: @yellow;
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+}
+
+#custom-exit {
+  color: @red;
+}
+
+#pulseaudio {
+  color: @sapphire;
+}
+
+#pulseaudio.bluetooth {
+  color: @pink;
+}
+
+#pulseaudio.muted {
+  color: @red;
+}
+
+#custom-cava {
+	color: @pink;
+}
