@@ -92,5 +92,5 @@ alias c="clear"
 alias y="yay"
 alias n="nvim"
 alias lg="lazygit"
-
+alias hl="hyprlock"
 export CHROME_EXECUTABLE="/bin/google-chrome-stable"
