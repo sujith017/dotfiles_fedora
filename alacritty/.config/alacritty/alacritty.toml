@@ -1,6 +1,3 @@
-import = [
-  "~/.config/alacritty/catppuccin-mocha.toml"
-]
 
 [env]
 TERM = "xterm-256color"
@@ -62,3 +59,8 @@ y = 15
 
 [cursor]
 style = "beam"
+
+[general]
+import = [
+  "~/.config/alacritty/catppuccin-mocha.toml"
+]
