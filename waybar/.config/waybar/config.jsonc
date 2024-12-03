@@ -1,5 +1,5 @@
 {
-    "layer": "top", // Waybar at top layer
+   "layer": "top", // Waybar at top layer
     "position": "top", // Waybar position (top|bottom|left|right)
     //  "height": 1,
     //   "width":1900,
@@ -18,7 +18,7 @@
         "cpu",
         "memory",
         "bluetooth",
-        // "backlight",
+       // "backlight",
         "pulseaudio",
         "network",
         "tray",
@@ -191,7 +191,7 @@
    "network": {
         //"interface": "wlp0s20f3", // (Optional) To force the use of this interface  "format-wifi": "  {essid}",
         "format": "⚠Disabled",
-        "format-wifi": "  {essid} {signalStrength}%",
+        "format-wifi": "     {essid} {signalStrength}%",
         "format-ethernet": "{ifname}: {ipaddr}/{cidr}",
         "format-linked": "{ifname} (No IP)",
         "format-disconnected": "⚠Disabled",
@@ -233,10 +233,10 @@
         "format-ethernet": "{icon} {ifname} ↓{bandwidthDownBytes} ⇡{bandwidthUpBytes}" // optional
     },
     "pulseaudio": {
-        "scroll-step": 3, // %, can be a float
-        "format": "{icon} {volume}% {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
+        "scroll-step": 3.5, // %, can be a float
+        "format": "{icon}   {volume}% {format_source}",
+        "format-bluetooth": "  {volume}% {icon}  {format_source}",
+        "format-bluetooth-muted": " {icon}  {format_source}",
         "format-muted": " {format_source}",
         //"format-source": "{volume}% ",
         //"format-source-muted": "",

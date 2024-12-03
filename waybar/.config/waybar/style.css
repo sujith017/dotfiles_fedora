@@ -1,160 +1,192 @@
-@import "./themes/mocha.css";
-
+@import "themes/frappe.css";
 * {
-  font-family: "JetBrainsMono Nerd Font Mono";
-  font-weight: bold;
-  /* min-height: 0; */
-  /* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
-  font-size: 100%;
-  /* font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"'; */
+  color: #eceff4;
+  border: 0;
+  border-radius: 0;
+  padding: 0 0 0 0;
+  font-family: Symbols Nerd Font Mono;
+  font-size: 15px;
+  margin-right: 2px;
+  margin-left: 2px;
+  /* padding-bottom: 2px; */
+}
+* {
+
+  color: @rosewater;
+}
+window#waybar {
+  /* you can also GTK3 CSS functions! */
+  background-color: shade(@base, 0.9);
+  border: 2px solid alpha(@crust, 0.3);
+}
+window#waybar {
+  background: rgba (0, 0, 0, 0.5);
 }
 
-window#waybar 
-{
-  background-color: shade(@base, 0.9);
-  opacity: 0.7;
-  transition-property: background-color;
-  transition-duration: 0.5s;
-  border-radius: 10px;
-    color:grey;
+
+/**/
+#workspaces button.active {
+    border-color: #81a1c1;
+}
+
+#workspaces {
+  /* margin-right: 8px; */
+  /* border-radius: 10px; */
+  transition: none;
+  /* background: #383c4a; */
+  border-bottom: 2px;
 }
 
 #workspaces button {
-  color: @overlay1;
-  box-shadow: none;
-  text-shadow: none;
-  padding: 0px;
-  border-radius: 9px;
-  padding-left: 12px;
-  padding-right: 12px;
-  animation: gradient_f 20s ease-in infinite;
-  transition: all 0.5s cubic-bezier(0.55, -0.68, 0.48, 1.682);
-}
+  transition: none;
+  color: #7c818c;
+  background: transparent;
+  border-bottom: 2px;
+  border-color: #d8dee9;
+  border-style: solid;
 
-#workspaces button:hover {
-  border-radius: 10px;
-  color: @peach;
-  background-color: @surface0;
-  padding-left: 2px;
-  padding-right: 2px;
-  animation: gradient_f 20s ease-in infinite;
-  transition: all 0.3s cubic-bezier(0.55, -0.68, 0.48, 1.682);
+  /* padding: 5px; */
+  /* font-size: 18px; */
 }
 
 #workspaces button.persistent {
-  color: @surface1;
-  border-radius: 10px;
+  color: #7c818c;
+  /* font-size: 12px; */
 }
 
-#workspaces button.active {
-  color: @mauve;
-  border-radius: 10px;
-  padding-left: 8px;
-  padding-right: 8px;
-  animation: gradient_f 20s ease-in infinite;
-  transition: all 0.3s cubic-bezier(0.55, -0.68, 0.48, 1.682);
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+#workspaces button:hover {
+  transition: none;
+  box-shadow: inherit;
+  text-shadow: inherit;
+  border-radius: inherit;
+  color: #383c4a;
+  background: #7c818c;
 }
 
-#workspaces button.urgent {
-  color: @red;
-  border-radius: 0px;
+#workspaces button.focused {
+  color: white;
 }
-
-/* This section can be use if you want to separate waybar modules */
-.modules-left,
-.modules-center,
-.modules-right {
-  background: inherit;
-  border: 0.5px solid @overlay0;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  padding-right: 23px;
-  padding-left: 23px;
-  border-radius: 10px;
-}
-
-.modules-left,
-.modules-right {
-  border: 1px solid @blue;
-  margin-left: 9px;
-  margin-right: 9px;
-}
-
-#battery,
-#bluetooth,
 #clock,
-#custom-notification,
-#custom-cava,
-#pulseaudio,
-#pulseaudio.microphone,
-#tray,
+#battery,
 #cpu,
 #memory,
-#workspaces,
-#user
-#custom-menu,
-#custom-exit {
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-right: 12px;
-  padding-left: 12px;
-}
-#user{
-  padding-right: 6px;
-}
-#bluetooth {
-  color: @blue;
+#idle_inhibitor,
+#temperature,
+#custom-keyboard-layout,
+#backlight,
+#bluetooth,
+#user,
+#custom-lock1,
+#network,
+#pulseaudio,
+#tray,
+#window,
+#custom-launcher,
+#custom-power,
+#custom-pacman,
+#custom-network_traffic,
+#custom-weather {
+  padding: 2 8px;
+  /* border-bottom: 2px; */
+  /* border-style: solid; */
 }
 
-#battery {
-  color: @green;
-}
+/* -----------------------------------------------------------------------------
+ * Module styles
+ * -------------------------------------------------------------------------- */
+
+/**/
+/* #clock { */
+/*     color: #a3be8c; */
+/* } */
+/**/
+/* #backlight { */
+/*     color: #ebcb8b; */
+/* } */
+/**/
+/* #battery { */
+/*     color: #d8dee9; */
+/* } */
+/**/
+/* #battery.charging { */
+/*     color: #81a1c1; */
+/* } */
 
 @keyframes blink {
   to {
-    color: @surface0;
+    color: #4c566a;
+    background-color: #eceff4;
   }
 }
 
 #battery.critical:not(.charging) {
-  background-color: @red;
-  color: @theme_text_color;
+  background: #bf616a;
+  color: #eceff4;
   animation-name: blink;
   animation-duration: 0.5s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-direction: alternate;
-  box-shadow: inset 0 -3px transparent;
 }
 
-#clock {
-  color: @yellow;
-}
-
-#tray > .passive {
-  -gtk-icon-effect: dim;
-}
-
-#tray > .needs-attention {
-  -gtk-icon-effect: highlight;
-}
-
-#custom-exit {
-  color: @red;
-}
-
-#pulseaudio {
-  color: @sapphire;
-}
-
-#pulseaudio.bluetooth {
-  color: @pink;
-}
-
-#pulseaudio.muted {
-  color: @red;
-}
-
-#custom-cava {
-	color: @pink;
-}
+/* #cpu { */
+/*     color: #a3be8c; */
+/* } */
+/**/
+/* #memory { */
+/*     color: #d3869b; */
+/* } */
+/**/
+/* #network.disabled { */
+/*     color: #bf616a; */
+/* } */
+/**/
+/* #network { */
+/*     color: #a3be8c; */
+/* } */
+/**/
+/* #network.disconnected { */
+/*     color: #bf616a; */
+/* } */
+/**/
+/* #pulseaudio { */
+/*     color: #b48ead; */
+/* } */
+/**/
+/* #pulseaudio.muted { */
+/*     color: #3b4252; */
+/* } */
+/**/
+/* #temperature { */
+/*     color: #8fbcbb; */
+/* } */
+/**/
+/* #temperature.critical { */
+/*     color: #bf616a; */
+/* } */
+/**/
+/* #idle_inhibitor { */
+/*     color: #ebcb8b; */
+/* } */
+/**/
+/* #tray {} */
+/**/
+/* #custom-launcher, */
+/* #custom-power { */
+/*     border-style: hidden; */
+/*     margin-top: 2px; */
+/* } */
+/**/
+/* #window { */
+/*     border-style: hidden; */
+/*     margin-top: 1px; */
+/* } */
+/**/
+/* #custom-keyboard-layout { */
+/*     color: #d08770; */
+/* } */
+/**/
+/* #custom-network_traffic { */
+/*     color: #d08770; */
+/* } */
