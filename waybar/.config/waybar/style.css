@@ -1,192 +1,261 @@
-@import "themes/frappe.css";
 * {
-  color: #eceff4;
-  border: 0;
-  border-radius: 0;
-  padding: 0 0 0 0;
-  font-family: Symbols Nerd Font Mono;
-  font-size: 15px;
-  margin-right: 2px;
-  margin-left: 2px;
-  /* padding-bottom: 2px; */
+    border: none;
+    border-radius: 0px;
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: bold;
+    font-size: 13px;
+    min-height: 10px;
 }
-* {
 
-  color: @rosewater;
-}
+@import "themes/transparent.css";
+
 window#waybar {
-  /* you can also GTK3 CSS functions! */
-  background-color: shade(@base, 0.9);
-  border: 2px solid alpha(@crust, 0.3);
-}
-window#waybar {
-  background: rgba (0, 0, 0, 0.5);
+    background: rgba(21, 18, 27, 0);
+    color: #ebbcba;
 }
 
-
-/**/
-#workspaces button.active {
-    border-color: #81a1c1;
+#cpu,
+#memory,
+#battery,
+#temperature,
+#clock,
+#network,
+#user,
+#custom-lock1,
+#clock,
+#privacy,
+#custom-weather.severe,
+#custom-weather.sunnyDay,
+#custom-weather.clearNight,
+#custom-weather.cloudyFoggyDay, 
+#custom-weather.cloudyFoggyNight,
+#custom-weather.rainyDay, 
+#custom-weather.rainyNight,
+#custom-weather.showyIcyDay, 
+#custom-weather.snowyIcyNight,
+#workspaces,
+#window,
+#taskbar,
+#bluetooth,
+#pulseaudio,
+#custom-updates,
+#custom-power,
+#custom-l_end,
+#custom-r_end,
+#custom-sl_end,
+#custom-sr_end,
+#custom-rl_end,
+#custom-rr_end,
+#tray {
+    color: @main-color;
+    background: #191724;
+    opacity: 1;
+    margin: 4px 0px 4px 0px;
+    padding-left: 4px;
+    padding-right: 4px;
+    border: 0px solid #181825;
 }
 
-#workspaces {
-  /* margin-right: 8px; */
-  /* border-radius: 10px; */
-  transition: none;
-  /* background: #383c4a; */
-  border-bottom: 2px;
+tooltip {
+    background: @tool-bg;
+    color: @tool-color;
+    border-radius: 22px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #11111b;
 }
 
 #workspaces button {
-  transition: none;
-  color: #7c818c;
-  background: transparent;
-  border-bottom: 2px;
-  border-color: #d8dee9;
-  border-style: solid;
-
-  /* padding: 5px; */
-  /* font-size: 18px; */
+    box-shadow: none;
+	text-shadow: none;
+    padding: 0px;
+    border-radius: 9px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
+    color: @wb-color;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
-#workspaces button.persistent {
-  color: #7c818c;
-  /* font-size: 12px; */
+#workspaces button.active {
+    background: @wb-act-bg;
+    color: @wb-act-color;
+    margin-left: 3px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-right: 3px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
-/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 #workspaces button:hover {
-  transition: none;
-  box-shadow: inherit;
-  text-shadow: inherit;
-  border-radius: inherit;
-  color: #383c4a;
-  background: #7c818c;
+    background: @wb-hvr-bg;
+    color: @wb-hvr-color;
+    padding-left: 3px;
+    padding-right: 3px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#taskbar button {
+    box-shadow: none;
+	text-shadow: none;
+    padding: 0px;
+    border-radius: 9px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
+    color: @wb-color;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#taskbar button.active {
+    background: @wb-act-bg;
+    color: @wb-act-color;
+    margin-left: 3px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-right: 3px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#taskbar button:hover {
+    background: @wb-hvr-bg;
+    color: @wb-hvr-color;
+    padding-left: 3px;
+    padding-right: 3px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#workspaces,
+#taskbar {
+    padding: 0px;
+}
+
+#clock {
+    color: #f6c177;
+}
+
+#custom-weather.severe {
+    color: #eb937d;
+}
+
+#custom-weather.sunnyDay {
+    color: #dc2430;
+}
+
+#custom-weather.clearNight {
+    color: #516395;
+}
+
+#custom-weather.cloudyFoggyDay, #custom-weather.cloudyFoggyNight {
+    color: #06beb6;
+}
+
+#custom-weather.rainyDay, #custom-weather.rainyNight {
+    color: #02aab0;
+}
+
+#custom-weather.showyIcyDay, #custom-weather.snowyIcyNight {
+    color: #eb3349;
+}
+
+#custom-weather.default {
+    color: #dbd9d8;
+}
+
+#workspaces {
+    background: #191724;
+}
+
+#workspaces button {
+}
+
+#workspaces button.active {
+    color: #ebbcba;
 }
 
 #workspaces button.focused {
-  color: white;
-}
-#clock,
-#battery,
-#cpu,
-#memory,
-#idle_inhibitor,
-#temperature,
-#custom-keyboard-layout,
-#backlight,
-#bluetooth,
-#user,
-#custom-lock1,
-#network,
-#pulseaudio,
-#tray,
-#window,
-#custom-launcher,
-#custom-power,
-#custom-pacman,
-#custom-network_traffic,
-#custom-weather {
-  padding: 2 8px;
-  /* border-bottom: 2px; */
-  /* border-style: solid; */
+    color: #ffffff;
+    background: #191724;
 }
 
-/* -----------------------------------------------------------------------------
- * Module styles
- * -------------------------------------------------------------------------- */
-
-/**/
-/* #clock { */
-/*     color: #a3be8c; */
-/* } */
-/**/
-/* #backlight { */
-/*     color: #ebcb8b; */
-/* } */
-/**/
-/* #battery { */
-/*     color: #d8dee9; */
-/* } */
-/**/
-/* #battery.charging { */
-/*     color: #81a1c1; */
-/* } */
-
-@keyframes blink {
-  to {
-    color: #4c566a;
-    background-color: #eceff4;
-  }
+#workspaces button.urgent {
+    color: #ffffff;
+    background: #191724;
 }
 
-#battery.critical:not(.charging) {
-  background: #bf616a;
-  color: #eceff4;
-  animation-name: blink;
-  animation-duration: 0.5s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
+#workspaces button:hover {
+    background: #191724;
+    color: #ebbcba;
 }
 
-/* #cpu { */
-/*     color: #a3be8c; */
-/* } */
-/**/
-/* #memory { */
-/*     color: #d3869b; */
-/* } */
-/**/
-/* #network.disabled { */
-/*     color: #bf616a; */
-/* } */
-/**/
-/* #network { */
-/*     color: #a3be8c; */
-/* } */
-/**/
-/* #network.disconnected { */
-/*     color: #bf616a; */
-/* } */
-/**/
-/* #pulseaudio { */
-/*     color: #b48ead; */
-/* } */
-/**/
-/* #pulseaudio.muted { */
-/*     color: #3b4252; */
-/* } */
-/**/
-/* #temperature { */
-/*     color: #8fbcbb; */
-/* } */
-/**/
-/* #temperature.critical { */
-/*     color: #bf616a; */
-/* } */
-/**/
-/* #idle_inhibitor { */
-/*     color: #ebcb8b; */
-/* } */
-/**/
-/* #tray {} */
-/**/
-/* #custom-launcher, */
-/* #custom-power { */
-/*     border-style: hidden; */
-/*     margin-top: 2px; */
-/* } */
-/**/
-/* #window { */
-/*     border-style: hidden; */
-/*     margin-top: 1px; */
-/* } */
-/**/
-/* #custom-keyboard-layout { */
-/*     color: #d08770; */
-/* } */
-/**/
-/* #custom-network_traffic { */
-/*     color: #d08770; */
-/* } */
+#cpu {
+    color: #ff671f;
+}
+
+#memory {
+    color: #ffffff;
+}
+
+#temperature {
+    color: #97f993;
+}
+
+#temperature.critical {
+    color: #ff0000;
+}
+
+#pulseaudio {
+    color: #eb2089;
+}
+
+#battery {
+    color: #6bb0d9;
+}
+
+#custom-power {
+   color: #f5a500;
+}
+
+#custom-r_end {
+    border-radius: 0px 22px 22px 0px;
+    margin-right: 9px;
+    padding-right: 3px;
+}
+
+#custom-l_end {
+    border-radius: 22px 0px 0px 22px;
+    margin-left: 9px;
+    padding-left: 3px;
+}
+
+#custom-sr_end {
+    border-radius: 0px;
+    margin-right: 9px;
+    padding-right: 3px;
+}
+
+#custom-sl_end {
+    border-radius: 0px;
+    margin-left: 9px;
+    padding-left: 3px;
+}
+
+#custom-rr_end {
+    border-radius: 0px 8px 8px 0px;
+    margin-right: 9px;
+    padding-right: 3px;
+}
+
+#custom-rl_end {
+    border-radius: 8px 0px 0px 8px;
+    margin-left: 9px;
+    padding-left: 3px;
+}

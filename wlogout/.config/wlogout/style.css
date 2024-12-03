@@ -1,51 +1,62 @@
-
-* {
-	background-image: none;
-	box-shadow: none;
-}
-
 window {
-	background-color: rgba(12, 12, 12, 0.9);
+    font-family: CaskaydiaCove Nerd Font, monospace;
+    font-size: 12pt;
+    color: #cdd6f4; 
+    background-color: rgba(17, 17, 27, .88);
 }
 
 button {
-    border-radius: 0;
-    border-color: black;
-	text-decoration-color: #FFFFFF;
-    color: #FFFFFF;
-	background-color: #1E1E1E;
-	border-style: solid;
-	border-width: 1px;
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: 25%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 60%;
+    border: none;
+    color: #ced7f4;
+    text-shadow: none;
+    border-radius: 20px 20px 20px 20px;
+    background-color: rgba(30, 30, 46, 0);
+    margin: 5px;
+    transition: box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
 
-button:focus, button:active, button:hover {
-	background-color: #3700B3;
-	outline-style: none;
+button:hover {
+    background-color: rgba(49, 50, 68, 0.1);
 }
 
 #lock {
-    background-image: image(url("/usr/share/wlogout/icons/lock.png"), url("/usr/local/share/wlogout/icons/lock.png"));
+    background-image: image(url("/home/sujith/dotfiles_fedora/wlogout/.config/wlogout/icons/lock.png"));
+    background-size: 70%;
+}
+#lock:focus {
+    background-image: image(url("/home/sujith/dotfiles_fedora/wlogout/.config/wlogout/icons/lock-hover.png"));
 }
 
 #logout {
-    background-image: image(url("/usr/share/wlogout/icons/logout.png"), url("/usr/local/share/wlogout/icons/logout.png"));
+    background-image: image(url("/home/sujith/dotfiles_fedora/wlogout/.config/wlogout/icons/logout.png"));
+}
+#logout:focus {
+    background-image: image(url("/home/sujith/dotfiles_fedora/wlogout/.config/wlogout/icons/logout-hover.png"));
 }
 
 #suspend {
-    background-image: image(url("/usr/share/wlogout/icons/suspend.png"), url("/usr/local/share/wlogout/icons/suspend.png"));
-}
-
-#hibernate {
-    background-image: image(url("/usr/share/wlogout/icons/hibernate.png"), url("/usr/local/share/wlogout/icons/hibernate.png"));
+    background-image: image(url("/home/sujith/dotfiles_fedora/wlogout/.config/wlogout/icons/sleep.png"));
+} 
+#suspend:focus {
+    background-image: image(url("/home/sujith/dotfiles_fedora/wlogout/.config/wlogout/icons/sleep-hover.png"));
 }
 
 #shutdown {
-    background-image: image(url("/usr/share/wlogout/icons/shutdown.png"), url("/usr/local/share/wlogout/icons/shutdown.png"));
+    background-image: image(url("/home/sujith/dotfiles_fedora/wlogout/.config/wlogout/icons/power.png"));
+}
+#shutdown:focus {
+    background-image: image(url("/home/sujith/dotfiles_fedora/wlogout/.config/wlogout/icons/power-hover.png"));
 }
 
 #reboot {
-    background-image: image(url("/usr/share/wlogout/icons/reboot.png"), url("/usr/local/share/wlogout/icons/reboot.png"));
+    background-image: image(url("/home/sujith/dotfiles_fedora/wlogout/.config/wlogout/icons/restart.png"));
+}
+#reboot:focus {
+    background-image: image(url("/home/sujith/dotfiles_fedora/wlogout/.config/wlogout/icons/restart-hover.png"));
+}
+#hibernate {
+    background-image: image(url("/usr/share/wlogout/icons/hibernate.png"), url("/usr/local/share/wlogout/icons/hibernate.png"));
 }
