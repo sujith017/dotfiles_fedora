@@ -122,7 +122,7 @@
 
     "pulseaudio#microphone": {
         "format": "{format_source}",
-        "format-source": "",
+        //"format-source": "",
         "format-source-muted": "",
         "on-click": "pavucontrol -t 4",
         "on-click-middle": "~/.config/hypr/scripts/volumecontrol.sh -i m",
@@ -139,9 +139,9 @@
     },
 
     "custom/power": {
-        "format": "{}",
+        "format": " {}",
         "exec": "echo ; echo  logout",
-        "on-click": "~/.config/hypr/scripts/logoutlaunch.sh 2",
+        "on-click": " wlogout",
         "interval" : 86400, // once every day
         "tooltip": true
     },

@@ -1,20 +1,19 @@
+
 local on_attach = require("nvchad.configs.lspconfig").on_attach
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 local lspconfig = require("lspconfig")
 local util = require("lspconfig.util")
 
--- if you just want default config for the servers then put them in a table
-local servers = { "html", "cssls", "tsserver", "clangd", "jdtls", "bashls", "terraformls", "yamlls", "pylsp", "rust_analyzer" }
--- Other servers ---> "tflint"
+-- Update the list of servers with 'ts_ls' instead of 'tsserver'
+local servers = { "html", "cssls", "ts_ls", "clangd", "jdtls", "bashls", "terraformls", "yamlls", "pylsp", "rust_analyzer" }
 
 for _, lsp in ipairs(servers) do
-	lspconfig[lsp].setup({
-		on_attach = on_attach,
-		capabilities = capabilities,
-	})
+  lspconfig[lsp].setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+  })
 end
-
 -- lspconfig["terraformls"].setup{
 --   on_attach = on_attach,
 --   capabilities = capabilities,
