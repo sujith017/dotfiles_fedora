@@ -194,4 +194,268 @@ return {
       },
     },
   },
+}, {
+  "lewis6991/gitsigns.nvim",
+  event = "LazyFile",
+  opts = {
+    signs = {
+      add = { text = "▎" },
+      change = { text = "▎" },
+      delete = { text = "" },
+      topdelete = { text = "" },
+      changedelete = { text = "▎" },
+      untracked = { text = "▎" },
+    },
+    signs_staged = {
+      add = { text = "▎" },
+      change = { text = "▎" },
+      delete = { text = "" },
+      topdelete = { text = "" },
+      changedelete = { text = "▎" },
+    },
+    on_attach = function(buffer)
+      local gs = package.loaded.gitsigns
+
+      local function map(mode, l, r, desc)
+        vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
+      end
+
+      -- stylua: ignore start
+      map("n", "]h", function()
+        if vim.wo.diff then
+          vim.cmd.normal({ "]c", bang = true })
+        else
+          gs.nav_hunk("next")
+        end
+      end, "Next Hunk")
+      map("n", "[h", function()
+        if vim.wo.diff then
+          vim.cmd.normal({ "[c", bang = true })
+        else
+          gs.nav_hunk("prev")
+        end
+      end, "Prev Hunk")
+      map("n", "]H", function() gs.nav_hunk("last") end, "Last Hunk")
+      map("n", "[H", function() gs.nav_hunk("first") end, "First Hunk")
+      map({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
+      map({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
+      map("n", "<leader>ghS", gs.stage_buffer, "Stage Buffer")
+      map("n", "<leader>ghu", gs.undo_stage_hunk, "Undo Stage Hunk")
+      map("n", "<leader>ghR", gs.reset_buffer, "Reset Buffer")
+      map("n", "<leader>ghp", gs.preview_hunk_inline, "Preview Hunk Inline")
+      map("n", "<leader>ghb", function() gs.blame_line({ full = true }) end, "Blame Line")
+      map("n", "<leader>ghB", function() gs.blame() end, "Blame Buffer")
+      map("n", "<leader>ghd", gs.diffthis, "Diff This")
+      map("n", "<leader>ghD", function() gs.diffthis("~") end, "Diff This ~")
+      map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
+    end,
+  },
+}, {
+  "zbirenbaum/copilot.lua",
+  cmd = "Copilot",
+  build = ":Copilot auth",
+  event = "InsertEnter",
+  opts = {
+    suggestion = {
+      enabled = not vim.g.ai_cmp,
+      auto_trigger = true,
+      keymap = {
+        accept = false, -- handled by nvim-cmp / blink.cmp
+        next = "<M-]>",
+        prev = "<M-[>",
+      },
+    },
+    panel = { enabled = false },
+    filetypes = {
+      markdown = true,
+      help = true,
+    },
+  },
+}, {
+  "zbirenbaum/copilot.lua",
+  opts = function()
+    LazyVim.cmp.actions.ai_accept = function()
+      if require("copilot.suggestion").is_visible() then
+        LazyVim.create_undo()
+        require("copilot.suggestion").accept()
+        return true
+      end
+    end
+  end,
+}, {
+  "neovim/nvim-lspconfig",
+  opts = {
+    -- make sure mason installs the server
+    servers = {
+      --- @deprecated -- tsserver renamed to ts_ls but not yet released, so keep this for now
+      --- the proper approach is to check the nvim-lspconfig release version when it's released to determine the server name dynamically
+      tsserver = {
+        enabled = false,
+      },
+      ts_ls = {
+        enabled = false,
+      },
+      vtsls = {
+        -- explicitly add default filetypes, so that we can extend
+        -- them in related extras
+        filetypes = {
+          "javascript",
+          "javascriptreact",
+          "javascript.jsx",
+          "typescript",
+          "typescriptreact",
+          "typescript.tsx",
+        },
+        settings = {
+          complete_function_calls = true,
+          vtsls = {
+            enableMoveToFileCodeAction = true,
+            autoUseWorkspaceTsdk = true,
+            experimental = {
+              maxInlayHintLength = 30,
+              completion = {
+                enableServerSideFuzzyMatch = true,
+              },
+            },
+          },
+          typescript = {
+            updateImportsOnFileMove = { enabled = "always" },
+            suggest = {
+              completeFunctionCalls = true,
+            },
+            inlayHints = {
+              enumMemberValues = { enabled = true },
+              functionLikeReturnTypes = { enabled = true },
+              parameterNames = { enabled = "literals" },
+              parameterTypes = { enabled = true },
+              propertyDeclarationTypes = { enabled = true },
+              variableTypes = { enabled = false },
+            },
+          },
+        },
+        keys = {
+          {
+            "gD",
+            function()
+              local params = vim.lsp.util.make_position_params()
+              LazyVim.lsp.execute({
+                command = "typescript.goToSourceDefinition",
+                arguments = { params.textDocument.uri, params.position },
+                open = true,
+              })
+            end,
+            desc = "Goto Source Definition",
+          },
+          {
+            "gR",
+            function()
+              LazyVim.lsp.execute({
+                command = "typescript.findAllFileReferences",
+                arguments = { vim.uri_from_bufnr(0) },
+                open = true,
+              })
+            end,
+            desc = "File References",
+          },
+          {
+            "<leader>co",
+            LazyVim.lsp.action["source.organizeImports"],
+            desc = "Organize Imports",
+          },
+          {
+            "<leader>cM",
+            LazyVim.lsp.action["source.addMissingImports.ts"],
+            desc = "Add missing imports",
+          },
+          {
+            "<leader>cu",
+            LazyVim.lsp.action["source.removeUnused.ts"],
+            desc = "Remove unused imports",
+          },
+          {
+            "<leader>cD",
+            LazyVim.lsp.action["source.fixAll.ts"],
+            desc = "Fix all diagnostics",
+          },
+          {
+            "<leader>cV",
+            function()
+              LazyVim.lsp.execute({ command = "typescript.selectTypeScriptVersion" })
+            end,
+            desc = "Select TS workspace version",
+          },
+        },
+      },
+    },
+    setup = {
+      --- @deprecated -- tsserver renamed to ts_ls but not yet released, so keep this for now
+      --- the proper approach is to check the nvim-lspconfig release version when it's released to determine the server name dynamically
+      tsserver = function()
+        -- disable tsserver
+        return true
+      end,
+      ts_ls = function()
+        -- disable tsserver
+        return true
+      end,
+      vtsls = function(_, opts)
+        LazyVim.lsp.on_attach(function(client, buffer)
+          client.commands["_typescript.moveToFileRefactoring"] = function(command, ctx)
+            ---@type string, string, lsp.Range
+            local action, uri, range = unpack(command.arguments)
+
+            local function move(newf)
+              client.request("workspace/executeCommand", {
+                command = command.command,
+                arguments = { action, uri, range, newf },
+              })
+            end
+
+            local fname = vim.uri_to_fname(uri)
+            client.request("workspace/executeCommand", {
+              command = "typescript.tsserverRequest",
+              arguments = {
+                "getMoveToRefactoringFileSuggestions",
+                {
+                  file = fname,
+                  startLine = range.start.line + 1,
+                  startOffset = range.start.character + 1,
+                  endLine = range["end"].line + 1,
+                  endOffset = range["end"].character + 1,
+                },
+              },
+            }, function(_, result)
+              ---@type string[]
+              local files = result.body.files
+              table.insert(files, 1, "Enter new path...")
+              vim.ui.select(files, {
+                prompt = "Select move destination:",
+                format_item = function(f)
+                  return vim.fn.fnamemodify(f, ":~:.")
+                end,
+              }, function(f)
+                if f and f:find("^Enter new path") then
+                  vim.ui.input({
+                    prompt = "Enter move destination:",
+                    default = vim.fn.fnamemodify(fname, ":h") .. "/",
+                    completion = "file",
+                  }, function(newf)
+                    return newf and move(newf)
+                  end)
+                elseif f then
+                  move(f)
+                end
+              end)
+            end)
+          end
+        end, "vtsls")
+        -- copy typescript settings to javascript
+        opts.settings.javascript =
+          vim.tbl_deep_extend("force", {}, opts.settings.typescript, opts.settings.javascript or {})
+      end,
+    },
+  },
+}, {
+  "williamboman/mason.nvim",
+  opts = { ensure_installed = { "prettier" } },
 }
