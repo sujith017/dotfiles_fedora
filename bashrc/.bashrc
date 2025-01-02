@@ -6,22 +6,19 @@ export LANG=en_IN.UTF-8
 
 # Load starship prompt if starship is installed
 if [ -x /usr/bin/starship ]; then
-	__main() {
-		local major="${BASH_VERSINFO[0]}"
-		local minor="${BASH_VERSINFO[1]}"
+  __main() {
+    local major="${BASH_VERSINFO[0]}"
+    local minor="${BASH_VERSINFO[1]}"
 
-		if ((major > 4)) || { ((major == 4)) && ((minor >= 1)); }; then
-			source <("/usr/bin/starship" init bash --print-full-init)
-		else
-			source /dev/stdin <<<"$("/usr/bin/starship" init bash --print-full-init)"
-		fi
-	}
-	__main
-	unset -f __main
+    if ((major > 4)) || { ((major == 4)) && ((minor >= 1)); }; then
+      source <("/usr/bin/starship" init bash --print-full-init)
+    else
+      source /dev/stdin <<<"$("/usr/bin/starship" init bash --print-full-init)"
+    fi
+  }
+  __main
+  unset -f __main
 fi
-
-# Advanced command-not-found hook
-#source /usr/share/doc/find-the-command/ftc.bash
 
 ## Useful aliases
 
@@ -37,15 +34,11 @@ alias cat='bat --style header --style snip --style changes --style header'
 [ ! -x /usr/bin/yay ] && [ -x /usr/bin/paru ] && alias yay='paru'
 
 # Common use
-alias grubup="sudo update-grub"
-alias fixpacman="sudo rm /var/lib/pacman/db.lck"
 alias tarnow='tar -acf '
 alias untar='tar -zxvf '
 alias wget='wget -c '
-alias rmpkg="sudo pacman -Rdd"
 alias psmem='ps auxf | sort -nr -k 4'
 alias psmem10='ps auxf | sort -nr -k 4 | head -10'
-alias upd='/usr/bin/garuda-update'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -61,36 +54,22 @@ alias big="expac -H M '%m\t%n' | sort -h | nl"     # Sort installed packages acc
 alias gitpkg='pacman -Q | grep -i "\-git" | wc -l' # List amount of -git packages
 alias ip='ip -color'
 
-# Get fastest mirrors
-alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
-alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
-alias mirrors="sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
-alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
-
-# Help people new to Arch
-alias apt='man pacman'
-alias apt-get='man pacman'
-alias please='sudo'
-alias tb='nc termbin.com 9999'
-alias helpme='cht.sh --shell'
-alias pacdiff='sudo -H DIFFPROG=meld pacdiff'
-
-# Cleanup orphaned packages
-alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
-
 # Get the error messages from journalctl
 alias jctl="journalctl -p 3 -xb"
-
 # Recent installed packages
 alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
-
-
+alias vs="code ." # Open Visual Studio Code in the current directory
 eval "$(zoxide init bash --cmd 'cd')"
 alias cdi='__zoxide_zi'
 alias q="exit"
 alias c="clear"
-alias y="yay"
 alias n="nvim"
 alias lg="lazygit"
 alias hl="hyprlock"
-export CHROME_EXECUTABLE="/bin/google-chrome-stable"
+alias r="rm -rf"
+alias update="sudo dnf upgrade -y"
+alias need="sudo dnf install"
+alias remove="sudo dnf remove"
+# export CHROME_EXECUTABLE="/bin/google-chrome-stable"
+
+# neofetch
