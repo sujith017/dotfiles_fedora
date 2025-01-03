@@ -70,6 +70,7 @@ alias r="rm -rf"
 alias update="sudo dnf upgrade -y"
 alias need="sudo dnf install"
 alias remove="sudo dnf remove"
+alias gs="git status"
 # export CHROME_EXECUTABLE="/bin/google-chrome-stable"
 
 # neofetch
