@@ -71,6 +71,9 @@ alias update="sudo dnf upgrade -y"
 alias need="sudo dnf install"
 alias remove="sudo dnf remove"
 alias gs="git status"
+alias zed="~/.local/bin/zed"
+alias code="~/.local/bin/zed"
+
 # export CHROME_EXECUTABLE="/bin/google-chrome-stable"
 
 # neofetch
