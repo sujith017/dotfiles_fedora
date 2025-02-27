@@ -1,3 +1,3 @@
 ## Preview
 
-![Preview image](./Preview/preview.png)
+![Preview image](./Preview/waybar_new_preview.png)
