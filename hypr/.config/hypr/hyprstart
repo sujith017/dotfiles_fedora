@@ -4,16 +4,16 @@ cd ~
 
 #cursor size
 export XCURSOR_SIZE=24
-# 
+#
 # # text editor
 # export MICRO_TRUECOLOR=1
 # export EDITOR=/usr/bin/micro
-# 
+#
 # #browser
-# export BROWSER=firedragon
-# #terminal
-# export TERM=foot
+#export BROWSER=firedragon
+terminal
+export TERM=alacritty
 # #mail
 # export MAIL=thunderbird
-# 
-# check /usr/local/bin/hyprstart 
+#
+# check /usr/local/bin/hyprstart
