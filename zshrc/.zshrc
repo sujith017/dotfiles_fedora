@@ -182,4 +182,5 @@ alias zed="~/.local/bin/zed"
 alias sp="ncdu"
 # export CHROME_EXECUTABLE="/bin/google-chrome-stable"
 
+alias ec=eclipse
 # neofetch
