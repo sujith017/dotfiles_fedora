@@ -184,3 +184,4 @@ alias sp="ncdu"
 
 alias ec=eclipse
 # neofetch
+alias ide=idea
