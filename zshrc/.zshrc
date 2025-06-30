@@ -185,3 +185,4 @@ alias sp="ncdu"
 alias ec=eclipse
 # neofetch
 alias ide=idea
+export PATH="$HOME/.cargo/bin:$PATH"

@@ -77,3 +77,4 @@ alias sp="ncdu"
 # export CHROME_EXECUTABLE="/bin/google-chrome-stable"
 
 # neofetch
+export PATH="$HOME/.cargo/bin:$PATH"
