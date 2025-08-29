@@ -127,7 +127,7 @@ source $ZSH/oh-my-zsh.sh
 # fi
 #
 ## Useful aliases
-
+alias exa='eza'
 # Replace ls with exa
 alias ls='exa -al --color=always --group-directories-first --icons'     # preferred listing
 alias la='exa -a --color=always --group-directories-first --icons'      # all files and dirs

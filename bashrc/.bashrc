@@ -6,22 +6,23 @@ export LANG=en_IN.UTF-8
 
 # Load starship prompt if starship is installed
 if [ -x /usr/bin/starship ]; then
-  __main() {
-    local major="${BASH_VERSINFO[0]}"
-    local minor="${BASH_VERSINFO[1]}"
+	__main() {
+		local major="${BASH_VERSINFO[0]}"
+		local minor="${BASH_VERSINFO[1]}"
 
-    if ((major > 4)) || { ((major == 4)) && ((minor >= 1)); }; then
-      source <("/usr/bin/starship" init bash --print-full-init)
-    else
-      source /dev/stdin <<<"$("/usr/bin/starship" init bash --print-full-init)"
-    fi
-  }
-  __main
-  unset -f __main
+		if ((major > 4)) || { ((major == 4)) && ((minor >= 1)); }; then
+			source <("/usr/bin/starship" init bash --print-full-init)
+		else
+			source /dev/stdin <<<"$("/usr/bin/starship" init bash --print-full-init)"
+		fi
+	}
+	__main
+	unset -f __main
 fi
 
 ## Useful aliases
 
+alias exa='eza'
 # Replace ls with exa
 alias ls='exa -al --color=always --group-directories-first --icons'     # preferred listing
 alias la='exa -a --color=always --group-directories-first --icons'      # all files and dirs
@@ -78,3 +79,5 @@ alias sp="ncdu"
 
 # neofetch
 export PATH="$HOME/.cargo/bin:$PATH"
+
+eval "$(starship init bash)"
